@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using static System.Console;
+using static System.Threading.Thread;
 
 namespace SyncDelegateReview
 {
@@ -11,12 +7,12 @@ namespace SyncDelegateReview
 
     class Program
     {        
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("***** Sync Delegate Review *****");
+            WriteLine("***** Sync Delegate Review *****");
 
-            // Print out hte ID of the executing thread.
-            Console.WriteLine("Main() invoked on thread {0}.", Thread.CurrentThread.ManagedThreadId);
+            // Print out the ID of the executing thread.
+            WriteLine("Main() invoked on thread {0}.", CurrentThread.ManagedThreadId);
 
             // Invoke Add() in a synchronous manner.
             BinaryOp b = new BinaryOp(Add);
@@ -25,18 +21,18 @@ namespace SyncDelegateReview
             int answer = b(10, 10);
 
             // These lines will not execute until the Add() method has completed.
-            Console.WriteLine("Doing more work in Main()!");
-            Console.WriteLine("10 + 10 is {0}.", answer);
-            Console.ReadLine();
+            WriteLine("Doing more work in Main()!");
+            WriteLine("10 + 10 is {0}.", answer);
+            ReadLine();
         }
 
         static int Add(int x, int y)
         {
             // Print out the ID of the executing thread.
-            Console.WriteLine("Add() invoked on thread {0}.", Thread.CurrentThread.ManagedThreadId);
+            WriteLine("Add() invoked on thread {0}.", CurrentThread.ManagedThreadId);
 
             // Pause to simulate a lengthy operation.
-            Thread.Sleep(5000);
+            Sleep(5000);
             return x + y;
         }
     }
