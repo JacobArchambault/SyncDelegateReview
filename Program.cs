@@ -12,7 +12,7 @@ namespace SyncDelegateReview
             WriteLine("***** Sync Delegate Review *****");
 
             // Print out the ID of the executing thread.
-            WriteLine("Main() invoked on thread {0}.", CurrentThread.ManagedThreadId);
+            WriteLine($"Main() invoked on thread {CurrentThread.ManagedThreadId}.");
 
             // Invoke Add() in a synchronous manner.
             BinaryOp b = new BinaryOp(Add);
@@ -22,14 +22,14 @@ namespace SyncDelegateReview
 
             // These lines will not execute until the Add() method has completed.
             WriteLine("Doing more work in Main()!");
-            WriteLine("10 + 10 is {0}.", answer);
+            WriteLine($"10 + 10 is {answer}.");
             ReadLine();
         }
 
         static int Add(int x, int y)
         {
             // Print out the ID of the executing thread.
-            WriteLine("Add() invoked on thread {0}.", CurrentThread.ManagedThreadId);
+            WriteLine($"Add() invoked on thread {CurrentThread.ManagedThreadId}.");
 
             // Pause to simulate a lengthy operation.
             Sleep(5000);
